@@ -8,6 +8,7 @@ const buttonCreateEl = document.querySelector("button[data-create]");
 const buttonDestroyel = document.querySelector("button[data-destroy]");
 const boxesEl = document.querySelector("#boxes");
 let valueWidthAndHeight = 20;
+let elements = [];
 
 const createBoxes = (amount) => {
   amount = inputEl.value;
@@ -18,14 +19,18 @@ const createBoxes = (amount) => {
     elementEl.style.width = valueWidthAndHeight + "px";
     elementEl.style.height = valueWidthAndHeight + "px";
     elementEl.style.backgroundColor = getRandomHexColor();
-    boxesEl.append(elementEl);
+    elements.push(elementEl);
   };
+  boxesEl.append(...elements);
 };
 
 const destroyBoxes = () => {
+  valueWidthAndHeight = 20;
+  elements = [];
   do {
     boxesEl.firstChild.remove()
   } while (boxesEl.firstChild != null);
+  
 };
 
 buttonCreateEl.addEventListener("click", createBoxes);
